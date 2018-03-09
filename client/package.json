@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "description": "Demo Application for Bazaarvoice Client Response API",
   "main": "src/index.js",
-  "homepage": "https://bazaarvoice.github.io/clientresponse-demo/",
   "dependencies": {
+    "history": "^4.7.2",
+    "moment": "^2.21.0",
     "querystring": "^0.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "semantic-ui-css": "^2.3.0",
     "semantic-ui-react": "^0.78.3"
@@ -32,5 +34,6 @@
     "email": "api-infrastructure-team@bazaarvoice.com"
   },
   "author": "Bazaarvoice",
-  "license": "MIT"
+  "license": "Apache 2.0",
+  "proxy": "http://localhost:5000/"
 }

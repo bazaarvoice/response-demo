@@ -1,0 +1,13 @@
+{
+  "auth": {
+    "client_id": "",
+    "client_secret": "",
+    "endpoint": "https://api.bazaarvoice.com/auth/v1/oauth2",
+    "redirect_uri": "http://localhost:3000/api/redirect",
+    "passkey": ""
+  },
+  "clientResponse": {
+    "endpoint": "https://api.bazaarvoice.com/contentmanagement/v1",
+    "passkey": ""
+  }
+}

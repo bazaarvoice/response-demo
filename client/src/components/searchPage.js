@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ReviewPage from './components/reviewPage';
 import 'semantic-ui-css/semantic.min.css';
 import { Input, Button } from 'semantic-ui-react';
-import Background from './assets/search-background.jpg';
+import '../css/SearchBar.css';
+import Background from '../assets/search-background.jpg';
 
 
 export default class SearchPage extends Component {
@@ -13,27 +12,17 @@ export default class SearchPage extends Component {
     this.state = { };
   }
 
-  // Function which handles references from the input field
-  handleInputRef = (c) => {
-    this.inputRef = c;
-  }
-
-  // When this function is called, the input field is focused
-  inputFocus = () => {
-    this.inputRef.focus();
-  }
-
   // Function to update state variable as user changes their input
-  handleSearchChange = (e, { value }) => {
+  handleSearchChange = (event, { value }) => {
     this.setState({ SearchQuery: value });
-  }
+  };
 
   // Function which handles pressing the Enter key while on the input field
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.handleSubmit();
     }
-  }
+  };
 
   // Function which handles search submissions
   handleSubmit = () => {
@@ -43,13 +32,12 @@ export default class SearchPage extends Component {
     else focus on the field, prompting user to type
     */
     if (this.state.SearchQuery) {
-      ReactDOM.render(<ReviewPage SearchQuery={ this.state.SearchQuery }/>, document.getElementById('root'));
-    } else {
-      this.inputFocus();
+      window.location = `/review?SearchQuery=${this.state.SearchQuery}`;
     }
-  }
+  };
 
-  render() {
+  render = () => {
+
     /*
     Rendering a simple page with a background
     image and centered search bar on top
@@ -61,22 +49,18 @@ export default class SearchPage extends Component {
     style.innerHTML = 'div { height:100%; width:100% }';
     document.getElementsByTagName('head')[0].appendChild(style);
 
-
     // Defining style for local elements
     const localDivStyle = {
       backgroundImage: `url(${Background})`,
       backgroundSize: '100%',
       backgroundPosition: 'absolute'
     };
-    const localSectionStyle = {
-      width: '50%'
-    };
 
     return (
-      <div className="container" style={ localDivStyle }>
+      <div className="container SearchPage" style={ localDivStyle }>
 
-        <section className="centered" style={ localSectionStyle }>
-          <Input fluid type='text' placeholder='Review ID...' action ref={ this.handleInputRef } onChange={ this.handleSearchChange } onKeyPress={ this.handleKeyPress }>
+        <section className="centered SearchBar" >
+          <Input fluid type='text' placeholder='Review ID...' action onChange={ this.handleSearchChange } onKeyPress={ this.handleKeyPress }>
             <input />
             <Button type='submit' onClick={ this.handleSubmit } >Search</Button>
           </Input>
@@ -85,7 +69,7 @@ export default class SearchPage extends Component {
       </div>
     );
 
-  }
+  };
 }
 
 
