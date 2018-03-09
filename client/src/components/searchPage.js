@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Input, Button } from 'semantic-ui-react';
 import '../css/SearchBar.css';
-import Background from '../assets/search-background.jpg';
+import '../css/Background.css';
 
 
 export default class SearchPage extends Component {
@@ -37,7 +37,6 @@ export default class SearchPage extends Component {
   };
 
   render = () => {
-
     /*
     Rendering a simple page with a background
     image and centered search bar on top
@@ -49,15 +48,8 @@ export default class SearchPage extends Component {
     style.innerHTML = 'div { height:100%; width:100% }';
     document.getElementsByTagName('head')[0].appendChild(style);
 
-    // Defining style for local elements
-    const localDivStyle = {
-      backgroundImage: `url(${Background})`,
-      backgroundSize: '100%',
-      backgroundPosition: 'absolute'
-    };
-
     return (
-      <div className="container SearchPage" style={ localDivStyle }>
+      <div className="container Background">
 
         <section className="centered SearchBar" >
           <Input fluid type='text' placeholder='Review ID...' action onChange={ this.handleSearchChange } onKeyPress={ this.handleKeyPress }>

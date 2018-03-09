@@ -14,7 +14,8 @@
     }
   },
   "plugins": [
-    "react"
+    "react",
+    "json"
   ],
   "parser": "babel-eslint",
   "rules": {

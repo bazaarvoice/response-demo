@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bazaarvoice/clientresponse-demo.svg?branch=master)](https://travis-ci.org/bazaarvoice/clientresponse-demo)
+
 # Client Response Demo Application
 
 This repository contains an example implementation of the Bazaarvoice Client Response API for our clients to reference in building their own integrations.
@@ -14,7 +16,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   ```
 - Make sure you have `node 9.0.0` and `npm 5.5.1` installed.
   - For instructions on installing `node`, see [this](https://nodejs.org/en/download/package-manager/). When you install `node`, `npm` is automatically installed.
-  - If you need to switch node versions, use [nvm](https://github.com/creationix/nvm)
+  - If you need to switch node versions, use [nvm](https://github.com/creationix/nvm).
+  
+- Make sure you have Docker installed.
+  - For instructions on installing Docker, see [this](https://docs.docker.com/install/#desktop)
   
 ## Local Deployment
 
@@ -22,13 +27,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Modify `client/src/utils/config.js` file to contain your client-side credentials for different services.
 * Make sure you are in the cloned directory and run following commands from your terminal:
   ```
-  npm install
-  cd client
-  npm install
-  cd ..
-  npm run dev
+  docker build -t clientresponse-demo .
+  docker run -p 127.0.0.1:5000:5000/tcp -i -t clientresponse-demo:latest
   ```
-  
+* You can use the application by going to `http://localhost:5000` in your browser.
+
 ## Application Architecture
 
 This application is split into two components - a Node.js Express server and a client-side React app. You can read more about this kind of setup [here](https://github.com/fullstackreact/food-lookup-demo).
@@ -42,17 +45,17 @@ This application is split into two components - a Node.js Express server and a c
 
 ## Application Limitations
 
-* **This implementation only supports one client at a time**
+* **The application cannot maintain proper user sessions**	
 
-   Since API passkeys are client-specific and this application reads API passkeys from configuration files - [server-config.json](server/server-config.json) and [config.js](client/src/utils/config.js), so it can only handle a single client at a time. In order to support multiple clients, you could store their API passkeys in your database and dynamically query your database for the current client's passkeys, use them to access Bazaarvoice APIs.
+  The express server currently uses just short-lived cookies for storing OAuth2 tokens. In a production application, you should maintain user sessions using cookies and session storage.
+
 * **Current implementation demonstrates only a single Client Response API endpoint**
 
    By displaying all client responses for a review on the ReviewPage, only 1 Client Response API endpoint is being demonstrated. Your application could use the Client Response API in more sophisticated ways. 
-* **Current server implementation uses a global variable to keep track of OAuth2 tokens**
 
-   Server currently uses a global state variable - `data` for storing OAuth2 authentication tokens. Due to this, multiple users cannot use the application during a single deployment. You should maintain user sessions using cookies and session storage for storing these tokens.
 * **Current server implementation does not explicitly handle error responses from API**
-   All of the Bazaarvoice APIs send different error responses for invalid calls and a production application should handle and display them properly to the end user. Currently, this application assumes all calls to be valid and doesn't do explicit error handling. 
+
+  All of the Bazaarvoice APIs send different error responses for invalid calls and a production application should handle and display them properly to the end user. Currently, this application assumes all calls to be valid and doesn't do explicit error handling. 
 
 ## License
 

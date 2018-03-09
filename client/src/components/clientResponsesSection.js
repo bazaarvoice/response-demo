@@ -14,8 +14,7 @@ export default class ClientResponsesSection extends Component {
     this.state = { ClientResponsesData: this.props.ClientResponsesData };
   }
 
-  render() {
-
+  render = () => {
     /*
     Iterating over Client Responses and generating its
     HTML templates to be rendered within the Review Page
@@ -35,7 +34,6 @@ export default class ClientResponsesSection extends Component {
       });
 
     return (
-
       <Comment.Group className={ 'ClientResponsesSection' }>
         <Header as='h3' dividing>Client Responses</Header>
         {/*
@@ -44,7 +42,6 @@ export default class ClientResponsesSection extends Component {
         */}
         { _.isEmpty(clientResponsesView)? <span>No Client Responses for this review</span>: clientResponsesView }
       </Comment.Group>
-
     );
   }
 }

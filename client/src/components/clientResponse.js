@@ -12,7 +12,7 @@ export default class ClientResponse extends Component {
     this.state = { ClientResponseData: this.props.ClientResponseData };
   }
 
-  render() {
+  render = () => {
     /*
     Converting client response modification
     time from ISO 8601 format to a more
@@ -23,7 +23,6 @@ export default class ClientResponse extends Component {
       .format('[on] MMMM Do, YYYY [at] hh:mm A');
 
     return (
-
       <Comment>
         <Comment.Avatar src={ avatar } />
         <Comment.Content>
@@ -34,7 +33,6 @@ export default class ClientResponse extends Component {
           <Comment.Text>{ this.state.ClientResponseData.Response }</Comment.Text>
         </Comment.Content>
       </Comment>
-
     );
   }
 }
