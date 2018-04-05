@@ -29,7 +29,8 @@ export function checkLogin() {
   verifying if an user is logged in or not
   */
   return makeBasicJSONRequest('/api/check-login', {
-    method: 'get'
+    method: 'get',
+    credentials: 'same-origin',
   });
 }
 
@@ -40,7 +41,8 @@ export function getClientResponsesForReview(client, reviewId) {
   Responses corresponding to a Client Name and Review ID
   */
   return makeBasicJSONRequest(`/api/sites/${client}/reviews/${reviewId}/clientResponses`, {
-    method: 'get'
+    method: 'get',
+    credentials: 'same-origin'
   });
 }
 
@@ -50,6 +52,7 @@ export function getClientResponse(responseGuid) {
   Response corresponding to a Response GUID
   */
   return makeBasicJSONRequest(`/api/clientResponses/${responseGuid}`, {
-    method: 'get'
+    method: 'get',
+    credentials: 'same-origin'
   });
 }

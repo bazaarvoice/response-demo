@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ReviewPage from './components/reviewPage';
 import 'semantic-ui-css/semantic.min.css';
 import { Segment, Dimmer, Loader } from 'semantic-ui-react';
-import './css/SearchBar.css';
+import LoginPage from './components/loginPage';
 import SearchPage from './components/searchPage';
-import { configurations }  from './utils/config.js';
+import ReviewPage from './components/reviewPage';
 import { checkLogin } from './api/client';
+
 
 // An object which maps routes to React Components
 const PAGES = {
@@ -23,16 +23,19 @@ export default class App extends Component {
 
   componentWillMount() {
     /*
-    Before loading anything, verify that the user is logged in.
-    If not, take them to Bazaarvoice OAuth2 login page.
+    Before loading anything, check whether user is
+    logged in, and set state variables accordingly
     */
     checkLogin().then((response) => {
-      if (!response.logged_in) {
-        const authConfig = configurations.auth;
-        window.location = `${authConfig.endpoint}/auth?client_id=${authConfig.client_id}&redirect_uri=${authConfig.redirect_uri}&passkey=${authConfig.passkey}`;
+      if (response.logged_in === true) {
+        this.setState({
+          loaded: true,
+          logged_in: true
+        });
       } else {
         this.setState({
           loaded: true,
+          logged_in: false
         });
       }
     });
@@ -41,11 +44,23 @@ export default class App extends Component {
   render() {
     if (this.state.loaded === true) {
       /*
-      If login verification has been performed successfully,
-      render the page corresponding to current pathname
+      If login verification has been
+      performed, render components
       */
-      const Handler = PAGES[this.props.location.pathname] || SearchPage;
-      return <Handler { ...this.props }/>;
+      if (this.state.logged_in === true) {
+        /*
+        If login verification has been performed successfully,
+        render the page corresponding to current pathname
+        */
+        const Handler = PAGES[this.props.location.pathname] || SearchPage;
+        return <Handler { ...this.props } />;
+      } else {
+        /*
+        If user is not logged in, render application's Login page.
+        */
+        return <LoginPage />;
+      }
+
     } else {
       /*
       If login verification is being performed,

@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Item, Dimmer, Loader, Segment, Rating, Input , Menu, Button, Label } from 'semantic-ui-react';
 import '../css/ReviewSection.css';
 import { getReviewDataById, getClientResponsesForReview } from '../api/client.js';
-import BVLogo from '../assets/bv-logo.png';
+import BVLogo from '../assets/bv-logo-1.png';
 import * as querystring from 'querystring';
 import { configurations }  from '../utils/config.js';
 
@@ -96,7 +96,6 @@ export default class ReviewPage extends Component {
   };
 
   render = () => {
-
     if (this.state.Reload === true) {
       /*
       If Reload has been set to true, then reload

@@ -7,7 +7,7 @@
     "email": "api-infrastructure-team@bazaarvoice.com"
   },
   "author": "Bazaarvoice",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon server.js",
@@ -19,8 +19,11 @@
     "cors": "^2.8.4",
     "eslint": "^4.2.0",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "path": "^0.12.7",
     "react-scripts": "^1.1.1",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Demo Application for Bazaarvoice Client Response API",
   "main": "src/index.js",
+  "homepage": "http://localhost:3000/",
   "dependencies": {
-    "history": "^4.7.2",
     "moment": "^2.21.0",
     "querystring": "^0.2.0",
     "react": "^16.2.0",
@@ -12,7 +12,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "semantic-ui-css": "^2.3.0",
-    "semantic-ui-react": "^0.78.3"
+    "semantic-ui-react": "^0.78.3",
+    "ajv": "^6.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -34,6 +35,6 @@
     "email": "api-infrastructure-team@bazaarvoice.com"
   },
   "author": "Bazaarvoice",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "proxy": "http://localhost:5000/"
 }
