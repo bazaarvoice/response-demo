@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'semantic-ui-css/semantic.min.css';
 import { Item, Dimmer, Loader, Segment, Rating, Input , Menu, Button, Label } from 'semantic-ui-react';
 import '../css/ReviewSection.css';
-import { getReviewDataById, getClientResponsesForReview } from '../api/client.js';
+import { getReviewDataById } from '../api/client.js';
 import BVLogo from '../assets/bv-logo-1.png';
 import * as querystring from 'querystring';
 import { configurations }  from '../utils/config.js';
@@ -19,8 +19,8 @@ export default class ReviewPage extends Component {
   }
 
   /*
-  Function to fetch a review by Review ID, fetch ClientResponses
-  for that review and assign state variables accordingly
+  Function to fetch a review by Review ID
+  and assign state variables accordingly
   */
   fetchReviewFromAPI = (reviewId) => {
     getReviewDataById(reviewId).then((reviewData) => {
@@ -29,25 +29,22 @@ export default class ReviewPage extends Component {
         If the API returns a review then get client responses for that
         review and assign desired fields to state variables for future use
         */
-        getClientResponsesForReview(configurations.client_name, reviewData.Results[0].Id)
-          .then((clientResponseData) => {
-            this.setState({
-              Reload: false,
-              InvalidReviewId: false,
-              ReviewData: {
-                ReviewId: reviewData.Results[0].Id,
-                Title: reviewData.Results[0].Title,
-                ReviewText: reviewData.Results[0].ReviewText,
-                Rating: reviewData.Results[0].Rating,
-                RatingRange: reviewData.Results[0].RatingRange,
-                Author: reviewData.Results[0].UserNickname,
-                ProductName: reviewData.Includes.Products[reviewData.Results[0].ProductId].Name,
-                SourceClient: configurations.client_name,
-                SubmissionTime: reviewData.Results[0].SubmissionTime,
-                ClientResponses: clientResponseData.data
-              }
-            });
-          });
+
+        this.setState({
+          Reload: false,
+          InvalidReviewId: false,
+          ReviewData: {
+            ReviewId: reviewData.Results[0].Id,
+            Title: reviewData.Results[0].Title,
+            ReviewText: reviewData.Results[0].ReviewText,
+            Rating: reviewData.Results[0].Rating,
+            RatingRange: reviewData.Results[0].RatingRange,
+            Author: reviewData.Results[0].UserNickname,
+            ProductName: reviewData.Includes.Products[reviewData.Results[0].ProductId].Name,
+            SourceClient: configurations.client_name,
+            SubmissionTime: reviewData.Results[0].SubmissionTime,
+          }
+        });
       } else {
         /*
         Otherwise, user entered an invalid Review ID.
@@ -190,7 +187,7 @@ export default class ReviewPage extends Component {
 
           </Item.Group>
 
-          <ClientResponsesSection ClientResponsesData={ this.state.ReviewData.ClientResponses } Client={ this.state.ReviewData.SourceClient } ReviewId={ this.state.ReviewData.ReviewId }/>
+          <ClientResponsesSection Client={ this.state.ReviewData.SourceClient } ReviewId={ this.state.ReviewData.ReviewId } />
 
         </div>
       );

@@ -1,10 +1,9 @@
-
 export const configurations = {
   client_name: '',
   auth: {
     client_id: '',
     endpoint: 'https://api.bazaarvoice.com/auth/v1/oauth2',
-    redirect_uri: 'http://localhost:3000/api/redirect',
+    redirect_uri: 'http://localhost:5000/api/redirect',
     passkey: ''
   },
   conversations: {

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Demo Application for Bazaarvoice Client Response API",
   "main": "src/index.js",
-  "homepage": "http://localhost:3000/",
+  "homepage": "http://localhost:5000/",
   "dependencies": {
     "moment": "^2.21.0",
     "querystring": "^0.2.0",
