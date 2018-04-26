@@ -21,7 +21,6 @@ const clientResponseConfig = configuration.clientResponse;
 // Initializing application and setting port
 const app = express();
 const port = process.env.PORT || 5000;
-app.listen(port);
 
 // Serve statically from build folder if in production
 if (process.env.NODE_ENV === 'production') {
@@ -31,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 // CORS configuration
 const corsOptions = {
   origin: 'null',
-  methods: ['GET', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   headers: 'Content-Type',
   optionsSuccessStatus: 200,
   credentials: true
@@ -42,6 +41,7 @@ app.use(cors(corsOptions));
 app.set('json spaces', 2);
 // Using bodyParser for JSON body parsing
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting trust proxy for express-session cookies
 app.set('trust proxy', 1);
@@ -56,10 +56,12 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    maxAge: 600000, // A cookie is valid for 10 minutes
-    secure: true
+    maxAge: 3600000, // A cookie is valid for 1 hour
+    secure: false // Cookie can be used over http as well (Don't do this for a production app)
   }
 }));
+
+app.listen(port);
 
 
 /*
@@ -96,6 +98,7 @@ function setAccessToken(req, res, next) {
         client_secret: authConfig.client_secret
       }
     };
+
     rp(options)
       .then(function(body) {
         req.session.token_data = JSON.parse(body);
@@ -104,7 +107,7 @@ function setAccessToken(req, res, next) {
       .catch(function(error) {
         res
           .status(500)
-          .json(error);
+          .json(JSON.parse(error.error));
       });
   } else if (req.session.token_data.expires_at - Math.round(Date.now() / 1000) < 60) {
     /*
@@ -129,6 +132,7 @@ function setAccessToken(req, res, next) {
         client_secret: authConfig.client_secret
       }
     };
+
     rp(options)
       .then(function(body) {
         req.session.token_data = JSON.parse(body);
@@ -137,7 +141,7 @@ function setAccessToken(req, res, next) {
       .catch(function(error) {
         res
           .status(500)
-          .json(error);
+          .json(JSON.parse(error.error));
       });
   } else {
     /*
@@ -170,6 +174,7 @@ Client Responses for a unique pair of Client name and
 Review ID, using a client's passkey and OAuth2 access token
 */
 app.get('/api/sites/:client/reviews/:reviewId/clientResponses', setAccessToken, (req, res) => {
+
   const options = {
     method: 'get',
     url: `${clientResponseConfig.endpoint}/sites/${req.params.client}/reviews/${req.params.reviewId}/clientResponses`,
@@ -180,11 +185,12 @@ app.get('/api/sites/:client/reviews/:reviewId/clientResponses', setAccessToken, 
       Authorization: `Bearer ${req.session.token_data.access_token}`
     }
   };
+
   request(options, function (error, response, body) {
     if (error) {
       res
         .status(500)
-        .json(error);
+        .json(JSON.parse(error.error));
     } else {
       res
         .status(response.statusCode)
@@ -200,6 +206,7 @@ a single Client Response by its Response GUID, using
 a client's passkey and OAuth2 access token
 */
 app.get('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
+
   const options = {
     method: 'get',
     url: `${clientResponseConfig.endpoint}/clientResponses/${req.params.responseGuid}`,
@@ -210,11 +217,12 @@ app.get('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
       Authorization: `Bearer ${req.session.token_data.access_token}`
     }
   };
+
   request(options, function (error, response, body) {
     if (error) {
       res
         .status(500)
-        .json(error);
+        .json(JSON.parse(error.error));
     } else {
       res
         .status(response.statusCode)
@@ -223,6 +231,106 @@ app.get('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
   });
 });
 
+/*
+This endpoint posts a new client response to the
+Client Response API for a unique pair of Client name and
+Review ID, using a client's passkey and OAuth2 access token
+*/
+app.post('/api/sites/:client/reviews/:reviewId/clientResponses', setAccessToken, (req, res) => {
+
+  const options = {
+    method: 'post',
+    url: `${clientResponseConfig.endpoint}/sites/${req.params.client}/reviews/${req.params.reviewId}/clientResponses`,
+    qs: {
+      passkey: clientResponseConfig.passkey
+    },
+    body: JSON.stringify(req.body),
+    headers: {
+      Authorization: `Bearer ${req.session.token_data.access_token}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  request(options, function (error, response, body) {
+    if (error) {
+      res
+        .status(500)
+        .json(JSON.parse(error.error));
+    } else {
+      res
+        .status(response.statusCode)
+        .json(JSON.parse(body));
+    }
+  });
+});
+
+/*
+This endpoint sends a put request to the Client Response API
+for modifying a single Client Response by its Response GUID,
+using a client's passkey and OAuth2 access token
+*/
+app.put('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
+
+  const options = {
+    method: 'put',
+    url: `${clientResponseConfig.endpoint}/clientResponses/${req.params.responseGuid}`,
+    qs: {
+      passkey: clientResponseConfig.passkey
+    },
+    body: JSON.stringify(req.body),
+    headers: {
+      Authorization: `Bearer ${req.session.token_data.access_token}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  request(options, function (error, response, body) {
+    if (error) {
+      res
+        .status(500)
+        .json(JSON.parse(error.error));
+    } else {
+      res
+        .status(response.statusCode)
+        .json(JSON.parse(body));
+    }
+  });
+});
+
+/*
+This endpoint sends a delete request to the Client Response API
+for deleting a single Client Response by its Response GUID,
+using a client's passkey and OAuth2 access token
+*/
+app.delete('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
+
+  const options = {
+    method: 'delete',
+    url: `${clientResponseConfig.endpoint}/clientResponses/${req.params.responseGuid}`,
+    qs: {
+      passkey: clientResponseConfig.passkey
+    },
+    headers: {
+      Authorization: `Bearer ${req.session.token_data.access_token}`,
+    }
+  };
+
+  request(options, function (error, response, body) {
+    if (error) {
+      res
+        .status(500)
+        .json(JSON.parse(error.error));
+    } else if (response.statusCode === 204) {
+      res
+        .status(response.statusCode)
+        .send();
+    } else {
+      res
+        .status(response.statusCode)
+        .send(JSON.parse(body));
+    }
+  });
+});
 
 /*
 This endpoint receives redirection from OAuth2 service, uses

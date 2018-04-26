@@ -18,7 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - For instructions on installing `node`, see [this](https://nodejs.org/en/download/package-manager/). When you install `node`, `npm` is automatically installed.
   - If you need to switch node versions, use [nvm](https://github.com/creationix/nvm).
   
-- Make sure you have Docker installed.
+- Make sure you have `Docker 18.03.0-ce` installed.
   - For instructions on installing Docker, see [this](https://docs.docker.com/install/#desktop)
   
 ## Local Deployment

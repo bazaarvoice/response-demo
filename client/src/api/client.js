@@ -1,4 +1,4 @@
-import { makeBasicJSONRequest } from '../utils/JSONRequest';
+import { makeBasicJSONRequest, makeBasicRequest } from '../utils/JSONRequest';
 import * as querystring from 'querystring';
 import { configurations }  from '../utils/config.js';
 
@@ -53,6 +53,43 @@ export function getClientResponse(responseGuid) {
   */
   return makeBasicJSONRequest(`/api/clientResponses/${responseGuid}`, {
     method: 'get',
+    credentials: 'same-origin'
+  });
+}
+
+export function postClientResponse(client, reviewId, clientResponse, department) {
+
+  return makeBasicJSONRequest(`/api/sites/${client}/reviews/${reviewId}/clientResponses`, {
+    method: 'post',
+    body: JSON.stringify({
+      attributes: {
+        response: clientResponse,
+        department: department
+      }
+    }),
+    headers: { 'content-type': 'application/json' },
+    credentials: 'same-origin'
+  });
+}
+
+export function putClientResponse(responseGuid, clientResponse, department) {
+
+  return makeBasicJSONRequest(`/api/clientResponses/${responseGuid}`, {
+    method: 'put',
+    body: JSON.stringify({
+      attributes: {
+        response: clientResponse,
+        department: department
+      }
+    }),
+    headers: { 'content-type': 'application/json' },
+    credentials: 'same-origin'
+  });
+}
+
+export function deleteClientResponse(responseGuid) {
+  return makeBasicRequest(`/api/clientResponses/${responseGuid}`, {
+    method: 'delete',
     credentials: 'same-origin'
   });
 }
