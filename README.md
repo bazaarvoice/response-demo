@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/bazaarvoice/clientresponse-demo.svg?branch=master)](https://travis-ci.org/bazaarvoice/clientresponse-demo)
 
-# Client Response Demo Application
+# Client Response Demo  Application
 
 This repository contains an example implementation of the Bazaarvoice Client Response API for our clients to reference in building their own integrations.
 
