@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Demo Application for Bazaarvoice Client Response API",
   "main": "src/index.js",
-  "homepage": "http://localhost:5000/",
   "dependencies": {
     "moment": "^2.21.0",
     "querystring": "^0.2.0",
@@ -35,6 +34,5 @@
     "email": "api-infrastructure-team@bazaarvoice.com"
   },
   "author": "Bazaarvoice",
-  "license": "Apache-2.0",
-  "proxy": "http://localhost:5000/"
+  "license": "Apache-2.0"
 }

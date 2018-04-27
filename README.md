@@ -14,9 +14,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   git clone https://github.com/bazaarvoice/clientresponse-demo.git
   cd clientresponse-demo
   ```
-- Make sure you have `node 9.0.0` and `npm 5.5.1` installed.
-  - For instructions on installing `node`, see [this](https://nodejs.org/en/download/package-manager/). When you install `node`, `npm` is automatically installed.
-  - If you need to switch node versions, use [nvm](https://github.com/creationix/nvm).
   
 - Make sure you have `Docker 18.03.0-ce` installed.
   - For instructions on installing Docker, see [this](https://docs.docker.com/install/#desktop)
@@ -49,13 +46,9 @@ This application is split into two components - a Node.js Express server and a c
 
   The express server currently uses just short-lived cookies for storing OAuth2 tokens. In a production application, you should maintain user sessions using cookies and session storage.
 
-* **Current implementation demonstrates only a single Client Response API endpoint**
+* **Current server implementation does not explicitly all handle error responses from API**
 
-   By displaying all client responses for a review on the ReviewPage, only 1 Client Response API endpoint is being demonstrated. Your application could use the Client Response API in more sophisticated ways. 
-
-* **Current server implementation does not explicitly handle error responses from API**
-
-  All of the Bazaarvoice APIs send different error responses for invalid calls and a production application should handle and display them properly to the end user. Currently, this application assumes all calls to be valid and doesn't do explicit error handling. 
+  All of the Bazaarvoice APIs send different error responses for invalid calls and a production application should handle and display them properly to the end user. Currently, this application assumes most calls to be valid and doesn't do explicit error handling. 
 
 ## License
 
