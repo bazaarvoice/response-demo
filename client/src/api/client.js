@@ -72,10 +72,10 @@ export function postClientResponse(client, reviewId, clientResponse, department)
   });
 }
 
-export function putClientResponse(responseGuid, clientResponse, department) {
+export function patchClientResponse(responseGuid, clientResponse, department) {
 
   return makeBasicJSONRequest(`/api/clientResponses/${responseGuid}`, {
-    method: 'put',
+    method: 'PATCH',
     body: JSON.stringify({
       attributes: {
         response: clientResponse,
