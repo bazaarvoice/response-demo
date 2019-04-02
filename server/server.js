@@ -265,14 +265,14 @@ app.post('/api/sites/:client/reviews/:reviewId/clientResponses', setAccessToken,
 });
 
 /*
-This endpoint sends a put request to the Client Response API
+This endpoint sends a patch request to the Client Response API
 for modifying a single Client Response by its Response GUID,
 using a client's passkey and OAuth2 access token
 */
 app.patch('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
 
   const options = {
-    method: 'patch',
+    method: 'PATCH',
     url: `${clientResponseConfig.endpoint}/clientResponses/${req.params.responseGuid}`,
     qs: {
       passkey: clientResponseConfig.passkey
