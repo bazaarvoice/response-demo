@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 // CORS configuration
 const corsOptions = {
   origin: 'null',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
   headers: 'Content-Type',
   optionsSuccessStatus: 200,
   credentials: true
@@ -269,10 +269,10 @@ This endpoint sends a put request to the Client Response API
 for modifying a single Client Response by its Response GUID,
 using a client's passkey and OAuth2 access token
 */
-app.put('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
+app.patch('/api/clientResponses/:responseGuid', setAccessToken, (req, res) => {
 
   const options = {
-    method: 'put',
+    method: 'patch',
     url: `${clientResponseConfig.endpoint}/clientResponses/${req.params.responseGuid}`,
     qs: {
       passkey: clientResponseConfig.passkey

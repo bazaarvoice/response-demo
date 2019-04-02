@@ -3,7 +3,7 @@ import moment from 'moment';
 import 'semantic-ui-css/semantic.min.css';
 import { Comment, Form, Button } from 'semantic-ui-react';
 import avatar from '../assets/avatar.png';
-import { putClientResponse, deleteClientResponse } from '../api/client';
+import { patchClientResponse, deleteClientResponse } from '../api/client';
 import { departmentFormOptions } from '../utils/departmentFormOptions';
 
 // This class manages the rendering of a single client response
@@ -31,8 +31,8 @@ export default class ClientResponse extends Component {
   };
 
   // Function to modify a client response
-  putClientResponseFromAPI = () => {
-    putClientResponse(
+  patchClientResponseFromAPI = () => {
+    patchClientResponse(
       this.state.ClientResponseData.ResponseGuid,
       this.state.EditResponseText,
       this.state.EditResponseDepartment)
@@ -81,7 +81,7 @@ export default class ClientResponse extends Component {
       API and temporarily send the form into a loading
       state while waiting for a response from the API
       */
-      this.putClientResponseFromAPI();
+      this.patchClientResponseFromAPI();
       this.setState({
         SubmitButtonLoading: true,
         FormLoading: true

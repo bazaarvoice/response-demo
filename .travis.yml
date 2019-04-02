@@ -16,7 +16,7 @@ before_install:
 # and .json files for style, using eslint
 script:
   - node --check server/server.js
-  - npm i -g eslint eslint-plugin-react babel-eslint eslint-plugin-json
+  - npm i -g eslint-plugin-json@1.2.0 eslint-plugin-react@7.9.1 eslint@4.19.1 babel-eslint@8.2.3
   - eslint --ext .json .js server client/src
 
 cache:
