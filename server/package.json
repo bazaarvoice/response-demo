@@ -3,13 +3,8 @@
   "version": "0.1.0",
   "description": "Demo Application for Bazaarvoice Response API",
   "team": {
-<<<<<<< HEAD
     "name": "Developer Advocates",
     "email": "DeveloperAdvocate@bazaarvoice.com"
-=======
-     "name": "Developer Advocates",
-     "email": "DeveloperAdvocate@bazaarvoice.com"
->>>>>>> 2a685958b76eca3a88f61a71d2b51b148ac51841
   },
   "author": "Bazaarvoice",
   "license": "Apache-2.0",
