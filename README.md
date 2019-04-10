@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bazaarvoice/clientresponse-demo.svg?branch=master)](https://travis-ci.org/bazaarvoice/clientresponse-demo)
+ [![Build Status](https://travis-ci.org/bazaarvoice/response-demo.svg?branch=master)](https://travis-ci.org/bazaarvoice/response-demo)
 
 #Response Demo Application
 
