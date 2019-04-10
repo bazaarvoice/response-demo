@@ -4,7 +4,7 @@
   "description": "Demo Application for Bazaarvoice Response API",
   "team": {
      "name": "Developer Advocates",
-    "email": "api-infrastructure-team@bazaarvoice.com"
+     "email": "DeveloperAdvocate@bazaarvoice.com"
   },
   "author": "Bazaarvoice",
   "license": "Apache-2.0",
