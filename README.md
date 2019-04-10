@@ -15,7 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## What is the sample doing?
 
-The client response demo application uses three Bazaarvoice solutions, Conversations API, Response API, and OAuth in one application.  
+The response demo application uses three Bazaarvoice solutions - Conversations API, Response API, and OAuth in one application.  
 
 After modifying the configuration files, described below, and starting the application, users must authenticate. 
 
