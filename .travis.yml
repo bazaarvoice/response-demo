@@ -10,7 +10,7 @@ services:
 
 # Building docker image
 before_install:
-  - docker build -t clientresponse-demo .
+  - docker build -t response-demo .
 
 # Verifying server.js for syntax errors, .js
 # and .json files for style, using eslint
