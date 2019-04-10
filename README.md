@@ -39,8 +39,8 @@ For existing client responses, HTML controls are available to <a href="https://d
 - Open the Command Line or Terminal.
 - Run the following commands to get a copy of this repository on your PC and navigate into it.
   ```
-  git clone https://github.com/bazaarvoice/clientresponse-demo.git
-  cd clientresponse-demo
+  git clone https://github.com/bazaarvoice/response-demo.git
+  cd response-demo
   ```
   
 - Make sure you have `Docker 18.03.0-ce` installed.
@@ -52,8 +52,8 @@ For existing client responses, HTML controls are available to <a href="https://d
 * Modify `client/src/utils/config.js` file to contain your client-side credentials for different services.
 * Make sure you are in the cloned directory and run following commands from your terminal:
   ```
-  docker build -t clientresponse-demo .
-  docker run -p 127.0.0.1:5000:5000/tcp -i -t clientresponse-demo:latest
+  docker build -t response-demo .
+  docker run -p 127.0.0.1:5000:5000/tcp -i -t response-demo:latest
   ```
 * You can use the application by going to `http://localhost:5000` in your browser.
 
@@ -61,11 +61,11 @@ For existing client responses, HTML controls are available to <a href="https://d
 
 This application is split into two components - a Node.js Express server and a client-side React app. You can read more about this kind of setup [here](https://github.com/fullstackreact/food-lookup-demo).
 
-* The [server](server/server.js) makes calls to the Bazaarvoice OAuth2 service for authentication and exposes endpoints to interact with the Client Response API.
+* The [server](server/server.js) makes calls to the Bazaarvoice OAuth2 service for authentication and exposes endpoints to interact with the Response API.
 * On the client-side, [client.js](client/src/api/client.js) provides modular functions which are used by front-end components to interact with the application's back-end, and with Bazaarvoice Conversations API to fetch reviews.
 * The core front-end consists of two pages which are composed from four React [components](client/src/components):
   * **[Search Page](client/src/components/searchPage.js):** This is a simple page with a search bar which expects user to enter a Review ID which leads them to the Review Page.
-  * **[Review Page](client/src/components/reviewPage.js):** This page expects a Review ID from the query parameters. It then queries the Conversation's API to fetch the corresponding review. Further, it queries the Client Response API to fetch all client responses for that review and renders the [ClientResponsesSection](client/src/components/clientResponsesSection.js) component with that data. In turn, this section renders each client response as a [ClientResponse](client/src/components/clientResponse.js) component. 
+  * **[Review Page](client/src/components/reviewPage.js):** This page expects a Review ID from the query parameters. It then queries the Conversation's API to fetch the corresponding review. Further, it queries the Response API to fetch all client responses for that review and renders the [ClientResponsesSection](client/src/components/clientResponsesSection.js) component with that data. In turn, this section renders each client response as a [ClientResponse](client/src/components/clientResponse.js) component. 
 
 
 ## Application Limitations
