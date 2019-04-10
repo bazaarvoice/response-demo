@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Demo Application for Bazaarvoice Response API",
   "team": {
-    "name": "API Infrastructure",
+     "name": "Developer Advocates",
     "email": "api-infrastructure-team@bazaarvoice.com"
   },
   "author": "Bazaarvoice",
