@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/bazaarvoice/clientresponse-demo.svg?branch=master)](https://travis-ci.org/bazaarvoice/clientresponse-demo)
 
-# Client Response Demo Application
+#Response Demo Application
 
-This repository contains an example implementation of the Bazaarvoice Client Response API for our clients to reference in building their own integrations.
+This repository contains an example implementation of the Bazaarvoice Response API for our clients to reference in building their own integrations.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). For details on how to perform some common tasks, refer to [this](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Obtain a API key for [Response API](https://developer.bazaarvoice.com/response-api/home).
 - Obtain a API key for [Conversations API](https://developer.bazaarvoice.com/conversations-api/home).
 - Obtain [OAuth credentials](https://developer.bazaarvoice.com/response-api/getting-started#getting-access).
-- Obtain a test reviewId to create a client response. This can be done through the Bazaarvoice workbench or using the [reviews endpoint](https://developer.bazaarvoice.com/conversations-api/reference/v5.4/reviews/review-display) that is part of the [Conversations API](https://developer.bazaarvoice.com/conversations-api/home). 
+- Obtain a test reviewId to respond to. This can be done through the Bazaarvoice workbench or using the [reviews endpoint](https://developer.bazaarvoice.com/conversations-api/reference/v5.4/reviews/review-display) that is part of the [Conversations API](https://developer.bazaarvoice.com/conversations-api/home). 
 
 
 ## What is the sample doing?
