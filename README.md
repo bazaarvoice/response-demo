@@ -6,6 +6,34 @@ This repository contains an example implementation of the Bazaarvoice Client Res
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). For details on how to perform some common tasks, refer to [this](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Prerequisites
+- Obtain a API key for [Response API](https://developer.bazaarvoice.com/response-api/home).
+- Obtain a API key for [Conversations API](https://developer.bazaarvoice.com/conversations-api/home).
+- Obtain [OAuth credentials](https://developer.bazaarvoice.com/response-api/getting-started#getting-access).
+- Obtain a test reviewId to create a client response. This can be done through the Bazaarvoice workbench or using the [reviews endpoint](https://developer.bazaarvoice.com/conversations-api/reference/v5.4/reviews/review-display) that is part of the [Conversations API](https://developer.bazaarvoice.com/conversations-api/home). 
+
+
+## What is the sample doing?
+
+The client response demo application uses three Bazaarvoice solutions, Conversations API, Response API, and OAuth in one application.  
+
+After modifying the configuration files, described below, and starting the application, users must authenticate. 
+
+
+<img src="https://dkv97bqrmxzll.cloudfront.net/img/git_hosted/authenicate.png" width="50%" />
+
+They are then directed to a generic search interface requesting a reviewId.
+
+<img src="https://dkv97bqrmxzll.cloudfront.net/img/git_hosted/search.png" width="50%" />
+
+At that point, an call to the <a href="https://developer.bazaarvoice.com/conversations-api/home">Conversations API</a> returns review data. 
+
+An API call is also made to the <a href="https://developer.bazaarvoice.com/response-api/home">Response API</a> to obtain any existing client responses. This is done to ensure the latest response data is obtained. There is a slight delay for responses to ELT back to the Conversations API data store.  
+
+<img src="https://dkv97bqrmxzll.cloudfront.net/img/git_hosted/sections.png" width="50%"/>
+
+For existing client responses, HTML controls are available to <a href="https://developer.bazaarvoice.com/response-api/reference/client-response/update-client-response">EDIT</a> and <a href ="https://developer.bazaarvoice.com/response-api/reference/client-response/delete-review-response">DELETE<a> the responses. There is also the ability to <a href="https://developer.bazaarvoice.com/response-api/reference/client-response/create-client-response">create a new response</a>. Two inputs are required for new responses, Department(string) and Response(string). For the purpose of the demo, the Department uses an hard-coded input dropdown. 
+
 ## Getting Started
 
 - Open the Command Line or Terminal.
