@@ -14,19 +14,19 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^10.1.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "eslint": "^4.2.0",
+    "eslint": "^6.6.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "path": "^0.12.7",
-    "react-scripts": "^1.1.1",
+    "react-scripts": "^3.4.1",
     "request": "^2.85.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^5.2.0"
   },
   "repository": {
     "type": "git",
